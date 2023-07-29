@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.2.0/exceljs.min.js"></script>
+<link rel="stylesheet" href="Studen.css">
+<script src="Studen.js"></script>
+
+<body ng-app="app" ng-controller="ctrl">
+
+    <section class=" ready__started project__form" style="padding-left: 20px;padding-right: 20px;">
+        <h3 class="text-center">REStfull API</h3>
+        <div >
+        <div class="container">
+
+            <div class="ready__started-box">
+                <form class="main__form" >
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <input ng-model="form.fullname" type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Fullname" >
+                                <label for="firstName">Fullname</label>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input ng-model="form.marks"  type="number" min="0" max="10" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Marsk">
+                                <label for="lastName">Marks</label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input ng-model="form.email" type="email" class="form-control" id="email" aria-describedby="email" placeholder="example@xyz.com" >
+                                <label for="email">Email</label>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select ng-model="form.country"  class="form-control" id="cars">
+                                    <option value="VN">Việt Nam</option>
+                                    <option value="US">United States</option>
+                                </select>
+                                <label >Country</label>
+                                
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div >
+                                <div style="   border: 1px solid #ced4da; border-radius: 0.25rem;">
+                                    <label for="male" >Male</label>
+                                    <input ng-model="form.gender" ng-checked="form.gender==0" value="1" type="radio" id="male" name="gender" style="width: 18px;height: 18px;">
+                                    <label for="female" >Femele</label>
+                                    <input ng-model="form.gender" ng-checked="form.gender!=0" value="0" type="radio" id="female" name="gender"  style="width: 18px;height: 18px;">
+                                </div>
+                                <label >Gender</label><br>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                File name: <label id="demo"  for="customFileInput">Select file</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" ng-click="create()" class=" btn btn-get"><span> Creare!</span></button>
+                        <button type="submit" ng-click="update()" class=" btn btn-get"><span> Update!</span></button>
+                        <button type="submit" ng-click="delete(form.email)" class=" btn btn-get"><span> Delete!</span></button>
+                        <button type="submit" ng-click="reset()" class=" btn btn-get"><span> Rest!</span></button>
+                        
+                        <style>
+                            .file-input{
+                                top: 20px;
+                                width: 156px;
+                                position: relative;
+                                background-image: linear-gradient(to right, #b70b83, #33077f);
+                                padding: 3px 5px 3px;
+                                border-radius: 5px;
+                            }
+                          </style>
+                        <input onchange="angular.element(this).scope().import(this.files)" type="file" class="file-input" id="customFileInput" aria-describedby="customFileInput">
+                  
+                        <script>
+                            document.querySelector('.file-input').addEventListener('change', function (e) {
+                              var name = document.getElementById("customFileInput").files[0].name;
+                              
+                              document.getElementById("demo").innerHTML = name;
+                              
+                            })
+                          </script> 
+
+                         
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class=" container" style="margin-top: 50px;">
+
+            <table class="table table-striped" style="background: white">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Marks</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="stu in items">
+                    <th scope="row">{{stu.id}}</th>
+                    <td>{{stu.email}}</td>
+                    <td>{{stu.fullname}}</td>
+                    <td>{{stu.marks}}</td>
+                    <td>{{stu.gender?'Female':'Male'}}</td>
+                    <td>{{stu.country}}</td>
+                    <td><button ng-click="edit(stu.email)" type="submit" class=" btn btn-get"><span> Edit!</span></button></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

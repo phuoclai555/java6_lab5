@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-with,initial-scale=1.0" />
+    <title>RESTful Consumer - AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+  <body ng-app="app" ng-controller="ctrl">
+    <h2>RESTful Consumer - AngularJS</h2>
+
+    <div>
+      <input ng-model="form.email" placeholder="Email Address?" /><br />
+      <input ng-model="form.fullname" placeholder="Full Name?" /><br />
+      <input ng-model="form.marks" placeholder="Average Marks?" /><br />
+      <input ng-model="form.gender" ng-value="true" type="radio" />Male
+      <input ng-model="form.gender" ng-value="false" type="radio" />Female<br>
+      <select ng-model="form.country">
+        <option value="VN">Việt Nam</option>
+        <option value="US">United States</option>
+      </select>
+      <hr />
+      <button ng-click="create()">Create</button>
+      <button ng-click="update()">Update</button>
+      <button ng-click="delete(form.email)">Delete</button>
+      <button ng-click="reset()">Reset</button>
+    </div>
+
+    <p>
+        <table style="width: 100%;" border="1">
+            <thead>
+                <tr>
+                    <th>Eamil Address</th>
+                    <th>Full Name</th>
+                    <th>Marks</th>
+                    <th>Gender</th>
+                    <th>Country</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="stu in items">
+                    <td>{{stu.email}}</td>
+                    <td>{{stu.fullname}}</td>
+                    <td>{{stu.marks}}</td>
+                    <td>{{stu.gender?'Male':'Female'}}</td>
+                    <td>{{stu.country}}</td>
+                    <td>
+                        <button ng-click="edit(stu.email)">Edit</button>
+                        <button ng-click="delete(stu.email)">Del</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </p>
+    <script src="crud-ctrl.js"></script>
+  </body>
+</html>

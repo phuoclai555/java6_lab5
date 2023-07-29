@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="file.js" ></script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+    <h3>File manager</h3>
+    <div for="" style="margin-bottom: 50px;">
+        Upload file:
+        <input type="file" name="files" accept="image/*" multiple onchange="angular.element(this).scope().upload(this.files)">
+                  
+    </div>
+
+    <label ng-repeat="filename in filenames" title="Double click to delete">
+        <img ng-src="{{url(filename)}}" ng-dblclick="delete(filename)" alt="" style=" width: 200px; height: 200px; object-fit: cover;">
+    </label>
+</body>
+</html>
